@@ -17,7 +17,7 @@ function drush_install_by_pear() {
   pear channel-discover pear.drush.org
   pear install drush/drush
   drush
-  chmod 777 -R ~/.drush/cache
+  chown $USER:$USER -R ~/.drush
 }
 
 # Install script for Ubuntu 14.04 and higher.
@@ -32,7 +32,7 @@ function drush_install_by_composer() {
 
 echo "Running Drush installation..."
 if [[ "$VERSION" > "13.10" ]]; then
-  drush_install_by_composer 
+  drush_install_by_composer
 else
   drush_install_by_pear
 fi
